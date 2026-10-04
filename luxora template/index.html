@@ -1,0 +1,2357 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Restaurant — All-Day Artisan Dining, Small Plates & Express Online Delivery</title>
+  <meta name="description" content="Experience Your Restaurant: handcrafted breakfast, lunch, dinner, and curated small plates in a casual, quiet setting for solo diners, groups, and families. Dine-in table service, free street parking, and hot online delivery." />
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings), Inter (Body), JetBrains Mono (Badges/Stats) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ============================================================================
+       BUYER CUSTOMIZATION GUIDE (TAILWIND & THEME TOKENS)
+       Change primary, secondary (Cyber Cyan), or accent (Emerald) colors here
+       to rebrand the entire template in seconds.
+  ============================================================================= -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#F59E0B', /* Warm Amber Flame */
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#EA580C', /* Deep Terracotta Flame */
+              700: '#C2410C',
+              800: '#9A3412',
+              900: '#7C2D12',
+            },
+            cyber: {
+              DEFAULT: '#06B6D4', /* Secondary Cyber Cyan */
+              400: '#22D3EE',
+              500: '#06B6D4',
+              600: '#0891B2',
+            },
+            emerald: {
+              DEFAULT: '#10B981', /* Accent Emerald */
+              400: '#34D399',
+              500: '#10B981',
+              600: '#059669',
+            },
+            obsidian: {
+              950: '#07090E',
+              900: '#0B0F17',
+              800: '#111827',
+              700: '#1E293B',
+            }
+          },
+          boxShadow: {
+            'glow-amber': '0 0 35px -5px rgba(245, 158, 11, 0.35)',
+            'glow-cyan': '0 0 35px -5px rgba(6, 182, 212, 0.35)',
+            'glow-emerald': '0 0 35px -5px rgba(16, 185, 129, 0.35)',
+            'glass': '0 20px 50px rgba(0, 0, 0, 0.35)',
+          },
+          animation: {
+            'float-slow': 'floatSlow 6s ease-in-out infinite',
+            'float-delayed': 'floatSlow 7s ease-in-out 2s infinite',
+            'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+            'marquee': 'marquee 32s linear infinite',
+            'spin-slow': 'spin 14s linear infinite',
+          },
+          keyframes: {
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(1deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.45', transform: 'scale(1)' },
+              '50%': { opacity: '0.85', transform: 'scale(1.06)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* ==========================================================================
+       1. EASY BUYER CUSTOMIZATION CSS VARIABLES
+       Modify these root variables to adjust colors, gradients, and speeds.
+       ========================================================================== */
+    :root {
+      --color-primary: #F59E0B;
+      --color-primary-deep: #EA580C;
+      --color-secondary-cyan: #06B6D4;
+      --color-accent-emerald: #10B981;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition-speed: 0.35s;
+
+      /* Light Mode Surface Tokens */
+      --bg-main: #FAF8F5;
+      --bg-elevated: #FFFFFF;
+      --bg-glass: rgba(255, 255, 255, 0.82);
+      --border-glass: rgba(15, 23, 42, 0.09);
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+    }
+
+    html.dark {
+      /* Dark Mode Surface Tokens */
+      --bg-main: #07090E;
+      --bg-elevated: #0E131F;
+      --bg-glass: rgba(14, 19, 31, 0.75);
+      --border-glass: rgba(255, 255, 255, 0.09);
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      letter-spacing: -0.025em;
+    }
+
+    /* Aurora Mesh Gradients */
+    .aurora-blob-amber {
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, rgba(234, 88, 12, 0.08) 45%, transparent 70%);
+      filter: blur(60px);
+    }
+    .aurora-blob-cyan {
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, rgba(16, 185, 129, 0.06) 50%, transparent 70%);
+      filter: blur(65px);
+    }
+    .aurora-blob-emerald {
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 70%);
+      filter: blur(60px);
+    }
+
+    /* Glassmorphic Card Surface */
+    .glass-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-glass);
+      transition: transform var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color var(--transition-speed) ease,
+                  box-shadow var(--transition-speed) ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(245, 158, 11, 0.38);
+    }
+
+    /* Bento Card Hover Spotlight */
+    .bento-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245, 158, 11, 0.11), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Subtle Geometric Grid Overlay */
+    .bg-grid-pattern {
+      background-size: 42px 42px;
+      background-image: 
+        linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07090E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #F59E0B;
+    }
+  </style>
+</head>
+
+<body class="antialiased selection:bg-primary-500 selection:text-slate-950 relative">
+
+  <!-- Interactive Ambient Particle Canvas Background -->
+  <canvas id="ambient-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-60 dark:opacity-85"></canvas>
+
+  <!-- Subtle Geometric Grid Overlay -->
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
+
+  <!-- Top Live Announcement Bar -->
+  <div class="relative z-40 bg-gradient-to-r from-amber-500/15 via-cyan-500/15 to-emerald-500/15 border-b border-slate-200/60 dark:border-white/10 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+      <div class="flex items-center gap-2 text-slate-700 dark:text-slate-200">
+        <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="font-semibold text-emerald-600 dark:text-emerald-400">OPEN TODAY 7:00 AM – 10:30 PM</span>
+        <span class="hidden sm:inline text-slate-400">|</span>
+        <span class="hidden sm:inline">Breakfast, Lunch, Dinner & Curated Small Plates</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-600 dark:text-slate-300">
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-cyber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Free Street Parking Outside
+        </span>
+        <span class="hidden md:inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Avg. 24-Min Hot Online Delivery
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SECTION 1: STICKY GLASSMORPHIC NAVBAR
+       ========================================================================== -->
+  <header id="navbar" class="sticky top-0 z-40 transition-all duration-300">
+    <div class="glass-card border-x-0 border-t-0">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+        
+        <!-- Brand Logo (Custom SVG) -->
+        <a href="#" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 p-0.5 shadow-glow-amber transition-transform duration-300 group-hover:scale-105">
+            <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center relative overflow-hidden">
+              <!-- Custom Culinary Flame & Cloche Vector Icon -->
+              <svg class="w-6 h-6 text-primary-400" viewBox="0 0 32 32" fill="none">
+                <path d="M6 22C6 16.4772 10.4772 12 16 12C21.5228 12 26 16.4772 26 22H6Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 25H29" stroke="#06B6D4" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M16 5C16 5 19 7.5 17.5 10C16.5 8.5 14.5 9 16 5Z" fill="#10B981" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <span class="font-heading font-extrabold text-xl tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
+              Your <span class="bg-gradient-to-r from-primary-500 via-amber-400 to-cyber-400 bg-clip-text text-transparent">Restaurant</span>
+            </span>
+            <span class="block text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+              Table Service • Small Plates • Delivery
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <a href="#features" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">Atmosphere & Perks</a>
+          <a href="#menu-showcase" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">All-Day Menu & Video</a>
+          <a href="#how-it-works" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">How It Works</a>
+          <a href="#dining-club" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">Dining Passes</a>
+          <a href="#testimonials" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">Guest Stories</a>
+          <a href="#faq" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">FAQ</a>
+        </nav>
+
+        <!-- Actions: Theme Switcher, Live Order Bag, CTA Button, Mobile Trigger -->
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          
+          <!-- Working Dark / Light Theme Toggle -->
+          <button id="theme-toggle" type="button" aria-label="Toggle Dark or Light Mode" class="p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 hover:border-primary-500/50 hover:text-primary-500 transition-all">
+            <!-- Sun Icon (shown in dark mode) -->
+            <svg id="theme-icon-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <!-- Moon Icon (shown in light mode) -->
+            <svg id="theme-icon-moon" class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+
+          <!-- Interactive Live Order Bag Button -->
+          <button id="open-cart-btn" type="button" class="relative p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 hover:border-cyber-400/60 transition-all flex items-center gap-2">
+            <svg class="w-5 h-5 text-cyber-500 dark:text-cyber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span class="hidden sm:inline text-xs font-mono font-semibold">Order Bag</span>
+            <span id="cart-count-badge" class="px-1.5 py-0.5 text-[11px] font-mono font-bold rounded-full bg-emerald-500 text-slate-950">2</span>
+          </button>
+
+          <!-- Primary CTA Button -->
+          <a href="#reserve-cta" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-heading font-bold text-xs sm:text-sm text-slate-950 bg-gradient-to-r from-primary-400 via-primary-500 to-amber-500 hover:from-primary-300 hover:to-primary-500 shadow-glow-amber transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+            <span>Book Table / Order</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+
+          <!-- Mobile Hamburger Button -->
+          <button id="mobile-menu-btn" type="button" aria-label="Open Menu" class="lg:hidden p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 text-slate-700 dark:text-slate-200">
+            <svg id="mobile-menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-drawer" class="hidden lg:hidden border-t border-slate-200/70 dark:border-white/10 px-4 pt-4 pb-6 space-y-3 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl">
+        <a href="#features" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-primary-500/10 hover:text-primary-500">Atmosphere & Free Parking</a>
+        <a href="#menu-showcase" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-primary-500/10 hover:text-primary-500">All-Day Menu & Small Plates</a>
+        <a href="#how-it-works" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-primary-500/10 hover:text-primary-500">Dine-In & Delivery Flow</a>
+        <a href="#dining-club" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-primary-500/10 hover:text-primary-500">Dining Passes & Catering</a>
+        <a href="#testimonials" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-primary-500/10 hover:text-primary-500">Guest Reviews</a>
+        <a href="#faq" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-primary-500/10 hover:text-primary-500">FAQ</a>
+        <div class="pt-2 flex flex-col sm:flex-row gap-2">
+          <a href="#reserve-cta" class="mobile-nav-link w-full text-center py-3 rounded-xl font-heading font-bold text-sm text-slate-950 bg-gradient-to-r from-primary-400 to-primary-500 shadow-glow-amber">
+            Reserve a Table or Order Online
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       SECTION 2: ANIMATED HERO SECTION + INTERACTIVE LIVE ORDER & TABLE UI MOCKUP
+       ========================================================================== -->
+  <section class="relative pt-10 pb-20 lg:pt-16 lg:pb-28 overflow-hidden z-10">
+    <!-- Glowing Aurora Mesh Blobs -->
+    <div class="aurora-blob-amber w-[480px] h-[480px] rounded-full absolute -top-24 -left-24 pointer-events-none"></div>
+    <div class="aurora-blob-cyan w-[460px] h-[460px] rounded-full absolute top-1/4 right-0 pointer-events-none"></div>
+    <div class="aurora-blob-emerald w-[380px] h-[380px] rounded-full absolute bottom-0 left-1/3 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+        
+        <!-- Left Column: Copy, Value Props, Dual CTAs -->
+        <div class="lg:col-span-6 space-y-7 text-left">
+          
+          <!-- Status Pill Badge -->
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-card border-primary-500/30 shadow-sm">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="font-mono text-xs font-semibold tracking-wide text-slate-800 dark:text-slate-200">
+              BREAKFAST • LUNCH • DINNER • SMALL PLATES
+            </span>
+            <span class="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded-full bg-cyber-500/20 text-cyber-600 dark:text-cyber-400 border border-cyber-500/30">
+              Quiet Vibe
+            </span>
+          </div>
+
+          <!-- High-Impact Headline -->
+          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl xl:text-6xl leading-[1.08] tracking-tight text-slate-900 dark:text-white">
+            Savor Every Plate in a
+            <span class="bg-gradient-to-r from-primary-500 via-amber-400 to-cyber-400 bg-clip-text text-transparent">
+              Calm Sanctuary
+            </span>
+            — Or At Your Door.
+          </h1>
+
+          <!-- Persuasive Subheadline tailored to Company Summary -->
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+            Welcome to <strong class="text-slate-900 dark:text-white font-semibold">Your Restaurant</strong>. Whether you are stopping by for an energizing quick bite, sharing chef-crafted small plates, or sitting down for full-service breakfast, lunch, or dinner, our casual and quiet dining room welcomes solo diners, friend groups, and families with children—complete with <span class="text-emerald-600 dark:text-emerald-400 font-medium underline decoration-emerald-500/40 underline-offset-4">complimentary street parking</span> right outside.
+          </p>
+
+          <!-- Quick Amenity Pills -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
+            <div class="flex items-center gap-2 px-3 py-2 rounded-xl glass-card text-xs font-medium text-slate-700 dark:text-slate-200">
+              <svg class="w-4 h-4 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>All-Day Table Service</span>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-2 rounded-xl glass-card text-xs font-medium text-slate-700 dark:text-slate-200">
+              <svg class="w-4 h-4 text-cyber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>Solo, Groups & Kids</span>
+            </div>
+            <div class="col-span-2 sm:col-span-1 flex items-center gap-2 px-3 py-2 rounded-xl glass-card text-xs font-medium text-slate-700 dark:text-slate-200">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Free Street Parking</span>
+            </div>
+          </div>
+
+          <!-- Dual CTAs + Video Modal Trigger -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <a href="#menu-showcase" class="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl font-heading font-bold text-base text-slate-950 bg-gradient-to-r from-primary-400 via-primary-500 to-amber-500 hover:from-primary-300 hover:to-primary-500 shadow-glow-amber transition-all transform hover:-translate-y-0.5">
+              <span>Explore Menu & Order</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+
+            <!-- Interactive Watch Culinary & Delivery Tour Button -->
+            <button id="open-video-modal-btn" type="button" class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-2xl glass-card font-heading font-semibold text-base text-slate-800 dark:text-white hover:border-cyber-400/60 group transition-all">
+              <span class="w-9 h-9 rounded-xl bg-cyber-500/20 border border-cyber-400/40 flex items-center justify-center text-cyber-500 dark:text-cyber-400 group-hover:scale-110 group-hover:bg-cyber-500 group-hover:text-slate-950 transition-all">
+                <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+              </span>
+              <span>Watch Restaurant Tour</span>
+            </button>
+          </div>
+
+          <!-- Social Proof Mini Bar -->
+          <div class="pt-2 flex items-center gap-4 border-t border-slate-200/70 dark:border-white/10">
+            <div class="flex -space-x-2.5">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Happy Diner" class="w-9 h-9 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" onerror="this.src='https://placehold.co/120x120/F59E0B/0F172A?text=JD'" />
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Happy Diner" class="w-9 h-9 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" onerror="this.src='https://placehold.co/120x120/06B6D4/0F172A?text=MK'" />
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Happy Diner" class="w-9 h-9 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" onerror="this.src='https://placehold.co/120x120/10B981/0F172A?text=AL'" />
+              <div class="w-9 h-9 rounded-full ring-2 ring-white dark:ring-slate-900 bg-gradient-to-br from-primary-500 to-cyber-500 text-[11px] font-mono font-bold text-slate-950 flex items-center justify-center">
+                4.9★
+              </div>
+            </div>
+            <div class="text-xs text-slate-600 dark:text-slate-400">
+              <span class="font-semibold text-slate-900 dark:text-white">Rated 4.9/5 by 3,400+ local guests</span> for quiet atmosphere, small plates & hot delivery.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Live Order & Table Experience UI Dashboard Mockup -->
+        <div class="lg:col-span-6 relative">
+          
+          <!-- Floating 3D Element 1: Quiet Atmosphere Acoustic Badge -->
+          <div class="hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl glass-card shadow-glass absolute -top-6 -left-6 z-20 animate-float-slow border-cyber-400/30">
+            <div class="w-10 h-10 rounded-xl bg-cyber-500/20 border border-cyber-400/40 flex items-center justify-center text-cyber-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+            </div>
+            <div>
+              <div class="text-[11px] font-mono uppercase text-cyber-500 dark:text-cyber-400 font-bold">Dining Room Vibe</div>
+              <div class="text-xs font-heading font-bold text-slate-900 dark:text-white">42 dB Quiet & Casual</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400">Ideal for Solo, Groups & Kids</div>
+            </div>
+          </div>
+
+          <!-- Floating 3D Element 2: Free Street Parking Sensor Badge -->
+          <div class="hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl glass-card shadow-glass absolute -bottom-6 -right-4 z-20 animate-float-delayed border-emerald-400/30">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 font-mono font-bold text-base">
+              P
+            </div>
+            <div>
+              <div class="text-[11px] font-mono uppercase text-emerald-600 dark:text-emerald-400 font-bold">Curbside Sensor</div>
+              <div class="text-xs font-heading font-bold text-slate-900 dark:text-white">Free Street Parking</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400">14 Open Spots Right Outside</div>
+            </div>
+          </div>
+
+          <!-- Main Interactive App Mockup Container -->
+          <div class="glass-card rounded-3xl p-4 sm:p-6 shadow-glass border border-slate-200/80 dark:border-white/15 relative z-10 overflow-hidden">
+            
+            <!-- Top App Window Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-200/70 dark:border-white/10">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                <span class="ml-2 text-xs font-mono text-slate-500 dark:text-slate-400">yourrestaurant.app/live-concierge</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                ● Kitchen Live
+              </span>
+            </div>
+
+            <!-- Interactive Mode Switcher Tabs inside Hero Dashboard -->
+            <div class="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-slate-900/90 mb-5 text-xs font-heading font-bold">
+              <button type="button" data-hero-tab="delivery" class="hero-tab-btn py-2.5 px-3 rounded-xl bg-gradient-to-r from-primary-500 to-amber-500 text-slate-950 shadow-sm transition-all">
+                Live Delivery
+              </button>
+              <button type="button" data-hero-tab="table" class="hero-tab-btn py-2.5 px-3 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">
+                Table & Parking
+              </button>
+              <button type="button" data-hero-tab="plates" class="hero-tab-btn py-2.5 px-3 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">
+                Small Plates
+              </button>
+            </div>
+
+            <!-- TAB 1: LIVE DELIVERY TRACKER VIEW -->
+            <div id="hero-panel-delivery" class="hero-tab-panel space-y-4">
+              <!-- Live Courier & Thermal Telemetry Card -->
+              <div class="p-4 rounded-2xl bg-slate-900/95 text-white border border-white/10 relative overflow-hidden">
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <div>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-cyber-400">ORDER #YR-8492 • THERMAL EXPRESS</span>
+                    <h3 class="text-base font-heading font-bold">Artisan Brunch & Small Plates Box</h3>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-xs font-mono text-emerald-400 font-bold">ETA 14 MINS</span>
+                    <span class="block text-[10px] font-mono text-slate-400"> Pouch Temp: 156°F</span>
+                  </div>
+                </div>
+
+                <!-- Animated Route Progress Bar -->
+                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden mb-3">
+                  <div class="h-full w-3/4 rounded-full bg-gradient-to-r from-primary-500 via-cyber-400 to-emerald-400 relative"></div>
+                </div>
+
+                <!-- Custom SVG Mini Route Telemetry Map -->
+                <div class="rounded-xl bg-slate-950/90 border border-white/10 p-3 flex items-center justify-between gap-3">
+                  <svg class="w-full h-16" viewBox="0 0 320 60" fill="none">
+                    <!-- Grid lines -->
+                    <path d="M0 15H320M0 30H320M0 45H320M60 0V60M140 0V60M220 0V60M280 0V60" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                    <!-- Route path -->
+                    <path d="M24 44 C85 44, 95 16, 165 22 C225 28, 250 14, 295 18" stroke="url(#routeGrad)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="6 4"/>
+                    <!-- Kitchen Pin -->
+                    <circle cx="24" cy="44" r="6" fill="#F59E0B"/>
+                    <circle cx="24" cy="44" r="11" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="2"/>
+                    <!-- Courier Live Pin -->
+                    <circle cx="215" cy="21" r="7" fill="#06B6D4"/>
+                    <circle cx="215" cy="21" r="13" stroke="#06B6D4" stroke-opacity="0.4" stroke-width="2"/>
+                    <!-- Destination Home Pin -->
+                    <circle cx="295" cy="18" r="6" fill="#10B981"/>
+                    <defs>
+                      <linearGradient id="routeGrad" x1="24" y1="44" x2="295" y2="18" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#F59E0B"/>
+                        <stop offset="0.55" stop-color="#06B6D4"/>
+                        <stop offset="1" stop-color="#10B981"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Featured Quick-Add Dish Inside Hero -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-3 rounded-2xl glass-card flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Charred Octopus & Citrus Small Plate" class="w-14 h-14 rounded-xl object-cover shrink-0" onerror="this.src='https://placehold.co/150x150/F59E0B/0F172A?text=Tapas'" />
+                  <div class="min-w-0 flex-1">
+                    <div class="text-xs font-heading font-bold text-slate-900 dark:text-white truncate">Herb Lamb Small Plate</div>
+                    <div class="text-[11px] font-mono text-primary-500 font-semibold">$14.50 • Quick Bite</div>
+                    <button type="button" onclick="window.addDishToCart('Herb Crusted Lamb Small Plate', 14.50)" class="mt-1 text-[11px] font-mono font-bold text-cyber-600 dark:text-cyber-400 hover:underline">
+                      + Add to Live Bag
+                    </button>
+                  </div>
+                </div>
+
+                <div class="p-3 rounded-2xl glass-card flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=200&q=80" alt="Artisan Shakshuka Breakfast" class="w-14 h-14 rounded-xl object-cover shrink-0" onerror="this.src='https://placehold.co/150x150/10B981/0F172A?text=Brunch'" />
+                  <div class="min-w-0 flex-1">
+                    <div class="text-xs font-heading font-bold text-slate-900 dark:text-white truncate">Truffle Brioche Eggs</div>
+                    <div class="text-[11px] font-mono text-emerald-500 font-semibold">$13.00 • All-Day</div>
+                    <button type="button" onclick="window.addDishToCart('Truffle Brioche Breakfast Plate', 13.00)" class="mt-1 text-[11px] font-mono font-bold text-cyber-600 dark:text-cyber-400 hover:underline">
+                      + Add to Live Bag
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 2: QUICK TABLE BOOKING & QUIET METER VIEW -->
+            <div id="hero-panel-table" class="hero-tab-panel hidden space-y-4">
+              <div class="p-4 rounded-2xl bg-slate-900 text-white border border-white/10 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono text-emerald-400">● DINE-IN TABLE SERVICE</span>
+                  <span class="text-xs font-mono text-cyber-400">Free Street Parking Included</span>
+                </div>
+                <p class="text-xs text-slate-300">
+                  Select your preferred seating zone in our quiet, casual dining room:
+                </p>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <button type="button" onclick="window.selectHeroSeating(this, 'Peaceful Solo Nook')" class="hero-seat-btn p-2.5 rounded-xl border border-primary-500 bg-primary-500/20 text-xs font-heading font-bold text-white">
+                    Solo Nook
+                    <span class="block text-[10px] font-mono text-amber-300 font-normal">Quiet Corner</span>
+                  </button>
+                  <button type="button" onclick="window.selectHeroSeating(this, 'Cozy Family Booth')" class="hero-seat-btn p-2.5 rounded-xl border border-white/10 bg-white/5 text-xs font-heading font-bold text-slate-200 hover:border-primary-400">
+                    Family Booth
+                    <span class="block text-[10px] font-mono text-slate-400 font-normal">Kids Welcome</span>
+                  </button>
+                  <button type="button" onclick="window.selectHeroSeating(this, 'Group Social Table')" class="hero-seat-btn p-2.5 rounded-xl border border-white/10 bg-white/5 text-xs font-heading font-bold text-slate-200 hover:border-primary-400">
+                    Group Table
+                    <span class="block text-[10px] font-mono text-slate-400 font-normal">4–8 Guests</span>
+                  </button>
+                </div>
+                <div class="pt-2 flex items-center justify-between text-xs">
+                  <span id="hero-selected-seat-label" class="font-mono text-amber-400">Selected: Peaceful Solo Nook</span>
+                  <a href="#reserve-cta" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-heading font-bold">
+                    Hold Table Free →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 3: TODAY'S SMALL PLATES & QUICK BITES VIEW -->
+            <div id="hero-panel-plates" class="hero-tab-panel hidden space-y-3">
+              <div class="p-3.5 rounded-2xl glass-card flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=200&q=80" alt="Crispy Halloumi & Fig Tapas" class="w-14 h-14 rounded-xl object-cover" onerror="this.src='https://placehold.co/150x150/F59E0B/0F172A?text=Plate'" />
+                  <div>
+                    <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-primary-500/20 text-primary-500 font-bold">8-Min Quick Bite</span>
+                    <h4 class="text-sm font-heading font-bold text-slate-900 dark:text-white">Crispy Halloumi & Honey Fig</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Small plate • Vegetarian friendly</p>
+                  </div>
+                </div>
+                <button type="button" onclick="window.addDishToCart('Crispy Halloumi & Honey Fig', 11.50)" class="px-3 py-2 rounded-xl bg-primary-500 text-slate-950 font-mono font-bold text-xs hover:bg-primary-400 transition-all">
+                  +$11.50
+                </button>
+              </div>
+
+              <div class="p-3.5 rounded-2xl glass-card flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=200&q=80" alt="Garlic Butter Prawn Skillet" class="w-14 h-14 rounded-xl object-cover" onerror="this.src='https://placehold.co/150x150/06B6D4/0F172A?text=Tapas'" />
+                  <div>
+                    <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-cyber-500/20 text-cyber-400 font-bold">Chef Small Plate</span>
+                    <h4 class="text-sm font-heading font-bold text-slate-900 dark:text-white">Sizzling Garlic Prawn Crostini</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Served with warm sourdough</p>
+                  </div>
+                </div>
+                <button type="button" onclick="window.addDishToCart('Sizzling Garlic Prawn Crostini', 15.00)" class="px-3 py-2 rounded-xl bg-primary-500 text-slate-950 font-mono font-bold text-xs hover:bg-primary-400 transition-all">
+                  +$15.00
+                </button>
+              </div>
+            </div>
+
+            <!-- Bottom Live Telemetry Footer inside Hero Card -->
+            <div class="mt-4 pt-3 border-t border-slate-200/70 dark:border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+              <span>★ Table Service: Wait-Time &lt; 3 mins</span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">✓ Free Street Parking Verified</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 3: INFINITE SCROLLING PARTNER & CULINARY RECOGNITION MARQUEE
+       ========================================================================== -->
+  <section class="py-8 border-y border-slate-200/70 dark:border-white/10 bg-white/40 dark:bg-slate-950/40 backdrop-blur-md relative z-10 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 text-center">
+      <p class="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+        RECOGNIZED FOR QUIET HOSPITALITY, ARTISAN SMALL PLATES & INTEGRATED DELIVERY PARTNERS
+      </p>
+    </div>
+
+    <div class="relative flex overflow-x-hidden">
+      <div class="animate-marquee whitespace-nowrap flex items-center gap-12 sm:gap-16 py-2">
+        <!-- Custom SVG Logos Set 1 -->
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-colors">
+          <svg class="w-7 h-7 text-primary-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">CULINARY GUILD 2026</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-cyber-400 transition-colors">
+          <svg class="w-7 h-7 text-cyber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">FLASHFLEET HOT DELIVERY</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-emerald-400 transition-colors">
+          <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">FAMILY DINING CERTIFIED</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-colors">
+          <svg class="w-7 h-7 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">CURBSIDE FREE PARKING ALLIANCE</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-cyber-400 transition-colors">
+          <svg class="w-7 h-7 text-cyber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">OPENTABLE DINERS' CHOICE</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-emerald-400 transition-colors">
+          <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">ARTISAN SMALL PLATES COLLECTIVE</span>
+        </div>
+
+        <!-- Duplicate Set for Seamless Infinite Scroll -->
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-colors">
+          <svg class="w-7 h-7 text-primary-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">CULINARY GUILD 2026</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-cyber-400 transition-colors">
+          <svg class="w-7 h-7 text-cyber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">FLASHFLEET HOT DELIVERY</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-emerald-400 transition-colors">
+          <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">FAMILY DINING CERTIFIED</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-colors">
+          <svg class="w-7 h-7 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">CURBSIDE FREE PARKING ALLIANCE</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-cyber-400 transition-colors">
+          <svg class="w-7 h-7 text-cyber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">OPENTABLE DINERS' CHOICE</span>
+        </div>
+        <div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-emerald-400 transition-colors">
+          <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/></svg>
+          <span class="font-heading font-bold text-base tracking-tight">ARTISAN SMALL PLATES COLLECTIVE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: ANIMATED STATISTICS & IMPACT COUNTER BAR
+       ========================================================================== -->
+  <section class="py-14 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-glass border border-slate-200/80 dark:border-white/10">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/60 dark:divide-white/10">
+          
+          <!-- Stat 1 -->
+          <div class="pt-4 sm:pt-0 sm:px-4 first:pt-0 text-center">
+            <div class="font-mono font-extrabold text-3xl sm:text-4xl lg:text-5xl bg-gradient-to-r from-primary-500 to-amber-400 bg-clip-text text-transparent">
+              <span class="stat-counter" data-target="99.8" data-decimals="1">0</span>%
+            </div>
+            <div class="mt-2 font-heading font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+              On-Time Hot Delivery
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Thermal-sealed breakfast, lunch & dinner
+            </p>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="pt-4 sm:pt-0 sm:px-4 text-center">
+            <div class="font-mono font-extrabold text-3xl sm:text-4xl lg:text-5xl bg-gradient-to-r from-cyber-400 to-emerald-400 bg-clip-text text-transparent">
+              <span class="stat-counter" data-target="150" data-decimals="0">0</span>K+
+            </div>
+            <div class="mt-2 font-heading font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+              Happy Guests Served
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Solo diners, friend groups & families
+            </p>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="pt-4 sm:pt-0 sm:px-4 text-center">
+            <div class="font-mono font-extrabold text-3xl sm:text-4xl lg:text-5xl text-emerald-500 dark:text-emerald-400">
+              <span class="stat-counter" data-target="45" data-decimals="0">0</span>+
+            </div>
+            <div class="mt-2 font-heading font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+              Small Plates & Entrees
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Quick bites to full 3-course dinners
+            </p>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="pt-4 sm:pt-0 sm:px-4 text-center">
+            <div class="font-mono font-extrabold text-3xl sm:text-4xl lg:text-5xl text-amber-500 dark:text-amber-400">
+              $<span class="stat-counter" data-target="0" data-decimals="0">0</span>
+            </div>
+            <div class="mt-2 font-heading font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+              Free Street Parking
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Zero valet fees • Step-free access outside
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 5: BENTO GRID FEATURES SECTION (6 CARDS WITH CUSTOM SVGS)
+       ========================================================================== -->
+  <section id="features" class="py-20 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+        <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-widest bg-primary-500/15 text-primary-600 dark:text-primary-400 border border-primary-500/30">
+          DESIGNED FOR EVERY CRAVING & COMPANY
+        </span>
+        <h2 class="mt-4 font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
+          Why Guests Love Dining & Ordering With <span class="text-primary-500">Your Restaurant</span>
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300">
+          We blended the warmth of attentive neighborhood table service with a peaceful acoustic atmosphere, shareable small plates, effortless street parking, and next-generation online food delivery.
+        </p>
+      </div>
+
+      <!-- 6-Card Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        <!-- Bento Card 1: All-Day Breakfast, Lunch & Dinner (Span 7) -->
+        <div class="md:col-span-7 glass-card bento-card rounded-3xl p-7 sm:p-8 flex flex-col justify-between reveal-up group">
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                ALL-DAY CULINARY PROGRAM
+              </span>
+              <span class="text-xs font-mono text-slate-400">07:00 AM — 10:30 PM</span>
+            </div>
+            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white mb-3">
+              Handcrafted Breakfast, Artisan Lunch & Signature Dinner
+            </h3>
+            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              From flaky sourdough breakfast tartines and single-origin espresso at sunrise, to crisp midday grain bowls and candlelit slow-braised dinner entrees—our kitchen transitions seamlessly through every chapter of your day.
+            </p>
+          </div>
+
+          <!-- Custom Interactive Daypart Timeline Graphic -->
+          <div class="mt-7 pt-6 border-t border-slate-200/60 dark:border-white/10 grid grid-cols-3 gap-3">
+            <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/25 group-hover:border-amber-500/50 transition-all">
+              <div class="flex items-center gap-2 text-amber-500 font-mono text-xs font-bold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                <span>BREAKFAST</span>
+              </div>
+              <div class="mt-1 text-xs font-heading font-bold text-slate-900 dark:text-white">7 AM – 11:30 AM</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">Brioche Eggs & Pour-Over</div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-cyber-500/10 border border-cyber-500/25 group-hover:border-cyber-500/50 transition-all">
+              <div class="flex items-center gap-2 text-cyber-500 dark:text-cyber-400 font-mono text-xs font-bold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>LUNCH & BITES</span>
+              </div>
+              <div class="mt-1 text-xs font-heading font-bold text-slate-900 dark:text-white">11:30 AM – 4 PM</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">12-Min Express Plates</div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 group-hover:border-emerald-500/50 transition-all">
+              <div class="flex items-center gap-2 text-emerald-500 dark:text-emerald-400 font-mono text-xs font-bold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                <span>DINNER</span>
+              </div>
+              <div class="mt-1 text-xs font-heading font-bold text-slate-900 dark:text-white">4 PM – 10:30 PM</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">Small Plates & Entrees</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 2: Casual & Quiet Atmosphere for Solo, Groups & Families (Span 5) -->
+        <div class="md:col-span-5 glass-card bento-card rounded-3xl p-7 sm:p-8 flex flex-col justify-between reveal-up group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-6">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyber-500/20 text-cyber-600 dark:text-cyber-400 border border-cyber-500/30">
+                VIBE & ATMOSPHERE
+              </span>
+              <span class="text-xs font-mono text-emerald-500 font-semibold">● 42 dB Calm Zone</span>
+            </div>
+            <h3 class="font-heading font-bold text-2xl text-slate-900 dark:text-white mb-3">
+              Casual, Quiet Sanctuary for Solo, Groups & Families
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Say goodbye to noisy, Echo-filled dining rooms. Acoustic timber ceilings and plush booth dividers create a peaceful setting equally suited for solo dining with a book, catching up with friends, or relaxed family meals with children.
+            </p>
+          </div>
+
+          <!-- Custom SVG Acoustic Wave & Seating Zones -->
+          <div class="mt-6 p-4 rounded-2xl bg-slate-900/90 text-white border border-white/10">
+            <div class="flex items-center justify-between text-xs font-mono mb-2">
+              <span class="text-cyber-400">ACOUSTIC COMFORT LEVEL</span>
+              <span class="text-emerald-400">WHISPER-CONVERSATIONAL</span>
+            </div>
+            <svg class="w-full h-12" viewBox="0 0 260 44" fill="none">
+              <path d="M4 22 Q 25 8, 45 22 T 85 22 T 125 22 T 165 22 T 205 22 T 256 22" stroke="#06B6D4" stroke-width="2.5" fill="none"/>
+              <path d="M4 22 Q 25 34, 45 22 T 85 22 T 125 22 T 165 22 T 205 22 T 256 22" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+            </svg>
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-300 mt-1">
+              <span>✓ Solo Reading Nooks</span>
+              <span>✓ High-Chairs & Kids Menu</span>
+              <span>✓ Group Tables</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 3: Quick Bites & Curated Small Plates (Span 4) -->
+        <div class="md:col-span-4 glass-card bento-card rounded-3xl p-7 flex flex-col justify-between reveal-up group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-primary-500/20 border border-primary-500/30 flex items-center justify-center text-primary-500 mb-5 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white mb-2">
+              Quick Bites & Chef Small Plates
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Short on time or love tasting everything? Stop by for a 10-minute artisan quick bite or mix-and-match from 22 Mediterranean & modern American small plates.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-xs font-mono">
+            <span class="text-primary-500 font-bold">22+ Tapas & Shareables</span>
+            <a href="#menu-showcase" class="text-slate-700 dark:text-slate-200 hover:text-primary-500">View Plates →</a>
+          </div>
+        </div>
+
+        <!-- Bento Card 4: Warm Dine-In Table Service (Span 4) -->
+        <div class="md:col-span-4 glass-card bento-card rounded-3xl p-7 flex flex-col justify-between reveal-up group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-500 mb-5 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white mb-2">
+              Attentive Dine-In Table Service
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Relax and let our hospitality team take care of every detail. Enjoy full table service with pacing tailored to your schedule—never rushed, never waiting.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-xs font-mono">
+            <span class="text-emerald-500 font-bold">Full Table Service</span>
+            <span class="text-slate-500 dark:text-slate-400">Optional QR Pay</span>
+          </div>
+        </div>
+
+        <!-- Bento Card 5: Complimentary Free Street Parking (Span 4) -->
+        <div class="md:col-span-4 glass-card bento-card rounded-3xl p-7 flex flex-col justify-between reveal-up group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-cyber-500/20 border border-cyber-500/30 flex items-center justify-center text-cyber-500 dark:text-cyber-400 mb-5 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white mb-2">
+              Free Street Parking Outside
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Skip expensive parking garages and valet lines. Generous, free street parking is available directly along our avenue for effortless family arrivals and quick pickups.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-xs font-mono">
+            <span class="text-cyber-500 dark:text-cyber-400 font-bold">$0.00 Curbside Parking</span>
+            <span class="text-emerald-500">● Spots Open</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 6: VIDEO SHOWCASE & INTERACTIVE ALL-DAY MENU TOUR SECTION
+       ========================================================================== -->
+  <section id="menu-showcase" class="py-20 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Heading -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 reveal-up">
+        <div>
+          <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-widest bg-cyber-500/15 text-cyber-600 dark:text-cyber-400 border border-cyber-500/30">
+            INTERACTIVE MENU & KITCHEN VIDEO TOUR
+          </span>
+          <h2 class="mt-4 font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
+            Taste the Craft: <span class="bg-gradient-to-r from-primary-500 to-cyber-400 bg-clip-text text-transparent">Small Plates to Full Feasts</span>
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-md">
+          Filter by meal period below to preview our chef's creations, watch our live kitchen showcase, and add dishes directly to your table or delivery order.
+        </p>
+      </div>
+
+      <!-- Main Video + Interactive Menu Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column (Span 5): Embedded HTML5 Video Showcase Card -->
+        <div class="lg:col-span-5 glass-card rounded-3xl p-4 sm:p-5 shadow-glass reveal-up">
+          <div class="relative rounded-2xl overflow-hidden bg-slate-950 aspect-[4/5] group">
+            <!-- Working Royalty-Free Culinary HTML5 Video -->
+            <video id="showcase-video" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=80">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-chef-putting-sauce-on-a-gourmet-dish-41422-large.mp4" type="video/mp4">
+            </video>
+
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-transparent"></div>
+
+            <!-- Top Live Pill inside Video -->
+            <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-slate-950/80 text-amber-400 border border-amber-400/30 backdrop-blur-md">
+                ● LIVE KITCHEN REEL
+              </span>
+              <button type="button" onclick="window.openVideoModal()" class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-white/15 hover:bg-white/25 text-white backdrop-blur-md transition-all">
+                Expand 4K ⤢
+              </button>
+            </div>
+
+            <!-- Bottom Video Caption & Play Control -->
+            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/80 border border-white/10 backdrop-blur-md text-white">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <div id="video-chapter-badge" class="text-[10px] font-mono uppercase tracking-wider text-cyber-400 font-bold">
+                    CHAPTER 01 • SMALL PLATES & TAPAS
+                  </div>
+                  <h3 id="video-chapter-title" class="text-base font-heading font-bold mt-0.5">
+                    Fire-Roasted Small Plates & Table Service
+                  </h3>
+                </div>
+                <button type="button" onclick="window.openVideoModal()" aria-label="Play Full Video Tour" class="w-11 h-11 rounded-xl bg-primary-500 hover:bg-primary-400 text-slate-950 flex items-center justify-center shrink-0 shadow-glow-amber transition-all">
+                  <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+                </button>
+              </div>
+              <p id="video-chapter-desc" class="text-xs text-slate-300 mt-2">
+                Prepared to order using locally sourced produce—served at your quiet table or delivered in thermal-control boxes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column (Span 7): Interactive Category Tabs & Live Dish Cards -->
+        <div class="lg:col-span-7 space-y-6 reveal-up">
+          
+          <!-- Category Filter Buttons -->
+          <div class="flex flex-wrap gap-2 p-1.5 rounded-2xl glass-card" id="menu-tabs-container">
+            <button type="button" data-menu-cat="small-plates" class="menu-tab-btn flex-1 min-w-[130px] py-2.5 px-4 rounded-xl font-heading font-bold text-xs sm:text-sm bg-gradient-to-r from-primary-500 to-amber-500 text-slate-950 shadow-sm transition-all">
+              Small Plates & Quick Bites
+            </button>
+            <button type="button" data-menu-cat="breakfast" class="menu-tab-btn flex-1 min-w-[110px] py-2.5 px-4 rounded-xl font-heading font-bold text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">
+              Breakfast
+            </button>
+            <button type="button" data-menu-cat="lunch" class="menu-tab-btn flex-1 min-w-[110px] py-2.5 px-4 rounded-xl font-heading font-bold text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">
+              Artisan Lunch
+            </button>
+            <button type="button" data-menu-cat="dinner" class="menu-tab-btn flex-1 min-w-[110px] py-2.5 px-4 rounded-xl font-heading font-bold text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">
+              Dinner & Family
+            </button>
+          </div>
+
+          <!-- Dynamic Dish Grid Container (Populated & Switched via JS) -->
+          <div id="menu-items-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Populated immediately on load by JS -->
+          </div>
+
+          <!-- Bottom Dietary & Parking Assurance Strip -->
+          <div class="p-4 rounded-2xl glass-card flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-medium">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              <span>Kid-friendly portions, vegetarian, and gluten-free options available on every menu.</span>
+            </div>
+            <button type="button" onclick="document.getElementById('open-cart-btn').click()" class="font-mono font-bold text-primary-500 hover:underline">
+              Review Order Bag →
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 7: INTERACTIVE 3-STEP "HOW IT WORKS" VISUAL TIMELINE
+       ========================================================================== -->
+  <section id="how-it-works" class="py-20 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header + Dine-In vs Delivery Journey Switcher -->
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-up">
+        <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-widest bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+          FRICTIONLESS HOSPITALITY
+        </span>
+        <h2 class="mt-4 font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
+          How <span class="text-primary-500">Your Restaurant</span> Works
+        </h2>
+        <p class="mt-3 text-base text-slate-600 dark:text-slate-300">
+          Whether you are parking outside for a quiet sit-down meal or ordering hot delivery to your sofa, every step is effortless.
+        </p>
+
+        <!-- Journey Toggle -->
+        <div class="mt-6 inline-flex p-1.5 rounded-2xl glass-card">
+          <button type="button" id="journey-btn-dinein" onclick="window.switchJourney('dinein')" class="px-5 py-2.5 rounded-xl font-heading font-bold text-xs sm:text-sm bg-gradient-to-r from-primary-500 to-amber-500 text-slate-950 shadow-sm transition-all">
+            Dine-In & Free Parking Flow
+          </button>
+          <button type="button" id="journey-btn-delivery" onclick="window.switchJourney('delivery')" class="px-5 py-2.5 rounded-xl font-heading font-bold text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">
+            Express Online Delivery Flow
+          </button>
+        </div>
+      </div>
+
+      <!-- 3-Step Visual Timeline Cards -->
+      <div id="journey-steps-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 relative reveal-up">
+        
+        <!-- Step 1 -->
+        <div class="glass-card rounded-3xl p-7 relative group hover:-translate-y-1 transition-all">
+          <div class="flex items-center justify-between mb-6">
+            <span class="w-12 h-12 rounded-2xl bg-primary-500/20 border border-primary-500/40 font-mono font-extrabold text-lg text-primary-500 flex items-center justify-center">
+              01
+            </span>
+            <span id="step-1-badge" class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/15 text-emerald-500 font-semibold">
+              $0 Curbside Spots
+            </span>
+          </div>
+          <h3 id="step-1-title" class="font-heading font-bold text-xl text-slate-900 dark:text-white mb-2">
+            Pull Up to Free Street Parking
+          </h3>
+          <p id="step-1-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Arrive stress-free with complimentary street parking right outside our entrance. Walk right in or hold your preferred quiet table online in 15 seconds.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-card rounded-3xl p-7 relative group hover:-translate-y-1 transition-all">
+          <div class="flex items-center justify-between mb-6">
+            <span class="w-12 h-12 rounded-2xl bg-cyber-500/20 border border-cyber-500/40 font-mono font-extrabold text-lg text-cyber-400 flex items-center justify-center">
+              02
+            </span>
+            <span id="step-2-badge" class="px-3 py-1 rounded-full text-xs font-mono bg-cyber-500/15 text-cyber-400 font-semibold">
+              Solo, Groups & Kids
+            </span>
+          </div>
+          <h3 id="step-2-title" class="font-heading font-bold text-xl text-slate-900 dark:text-white mb-2">
+            Settle Into Our Quiet Dining Room
+          </h3>
+          <p id="step-2-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Choose a peaceful solo booth, a spacious group table, or a family-friendly corner. Our attentive servers bring warm hospitality without any noise or rush.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-card rounded-3xl p-7 relative group hover:-translate-y-1 transition-all">
+          <div class="flex items-center justify-between mb-6">
+            <span class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 font-mono font-extrabold text-lg text-emerald-400 flex items-center justify-center">
+              03
+            </span>
+            <span id="step-3-badge" class="px-3 py-1 rounded-full text-xs font-mono bg-primary-500/15 text-primary-500 font-semibold">
+              Small Plates to Entrees
+            </span>
+          </div>
+          <h3 id="step-3-title" class="font-heading font-bold text-xl text-slate-900 dark:text-white mb-2">
+            Savor Quick Bites or Full Courses
+          </h3>
+          <p id="step-3-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Enjoy chef-curated small plates, energizing breakfast, lunch, or dinner. Pay effortlessly at your table whenever you are ready to head out.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 8: INTERACTIVE PRICING TABLE (MONTHLY / YEARLY 20% DISCOUNT)
+       ========================================================================== -->
+  <section id="dining-club" class="py-20 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header & Billing Toggle -->
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-up">
+        <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-widest bg-primary-500/15 text-primary-600 dark:text-primary-400 border border-primary-500/30">
+          DINING PASSES & CATERING SUBSCRIPTIONS
+        </span>
+        <h2 class="mt-4 font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
+          Unlock Priority Tables, Free Delivery & <span class="text-primary-500">Monthly Small Plates</span>
+        </h2>
+        <p class="mt-3 text-base text-slate-600 dark:text-slate-300">
+          Join our regular guests with a flexible Dining Club Pass—ideal for weekday solo diners, busy families, and group hosts.
+        </p>
+
+        <!-- Monthly / Yearly Switcher Calculating 20% Discount -->
+        <div class="mt-7 inline-flex items-center gap-3 p-2 rounded-2xl glass-card">
+          <span id="billing-label-monthly" class="text-xs sm:text-sm font-heading font-bold text-slate-900 dark:text-white px-2">Monthly Pass</span>
+          <button type="button" id="pricing-toggle-btn" role="switch" aria-checked="false" class="w-14 h-8 rounded-full bg-slate-300 dark:bg-slate-800 p-1 transition-colors relative focus:outline-none border border-slate-400/30 dark:border-white/10">
+            <span id="pricing-toggle-knob" class="block w-6 h-6 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 shadow-md transform transition-transform"></span>
+          </button>
+          <span id="billing-label-yearly" class="text-xs sm:text-sm font-heading font-medium text-slate-500 dark:text-slate-400 flex items-center gap-2 pr-2">
+            Annual Pass
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-500/20 text-emerald-500 border border-emerald-500/30">
+              SAVE 20%
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <!-- 3 Pricing Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch reveal-up">
+        
+        <!-- Plan 1: Solo Quick-Bite Pass -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-slate-200/80 dark:border-white/10">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white">Solo Quick-Bite Pass</h3>
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-200/70 dark:bg-white/5 text-slate-600 dark:text-slate-300">
+                Solo Diners
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">
+              Crafted for solo diners, remote professionals, and weekday quick-bite regulars.
+            </p>
+            <div class="flex items-baseline gap-1 mb-6">
+              <span class="font-mono font-extrabold text-4xl sm:text-5xl text-slate-900 dark:text-white">$<span class="price-value" data-monthly="29" data-yearly="23">29</span></span>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400">/ month <span class="billing-period-note">billed monthly</span></span>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>2 Complimentary Chef Small Plates / mo</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Priority Quiet Solo Nook table reservation</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Unlimited Free Artisan Coffee refills on dine-in</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>$0 Delivery Fee on weekday lunch orders</span>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" onclick="window.selectMembershipPlan('Solo Quick-Bite Pass')" class="w-full py-3.5 rounded-2xl font-heading font-bold text-sm border border-slate-300 dark:border-white/15 hover:border-primary-500 text-slate-900 dark:text-white hover:bg-primary-500 hover:text-slate-950 transition-all">
+            Choose Solo Pass
+          </button>
+        </div>
+
+        <!-- Plan 2: Family Table & Delivery Club (MOST POPULAR) -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border-2 border-primary-500 shadow-glow-amber relative transform lg:-translate-y-3">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-primary-400 to-amber-500 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider">
+            Most Popular • Families & Couples
+          </div>
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4 mt-2">
+              <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white">Family Table & Delivery Club</h3>
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-primary-500/20 text-primary-500 font-bold">
+                Best Value
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">
+              Everything your family needs for peaceful dine-in nights and unlimited hot home delivery.
+            </p>
+            <div class="flex items-baseline gap-1 mb-6">
+              <span class="font-mono font-extrabold text-4xl sm:text-5xl text-primary-500">$<span class="price-value" data-monthly="59" data-yearly="47">59</span></span>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400">/ month <span class="billing-period-note">billed monthly</span></span>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-200 mb-8">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span><strong>$75 Monthly Dining Credit</strong> (Dine-in or Online)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Unlimited $0 Express Hot Delivery (Breakfast–Dinner)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Complimentary Kids' Small Plate on family visits</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Guaranteed Quiet Family Booth & Free Street Parking</span>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" onclick="window.selectMembershipPlan('Family Table & Delivery Club')" class="w-full py-4 rounded-2xl font-heading font-bold text-sm bg-gradient-to-r from-primary-400 via-primary-500 to-amber-500 text-slate-950 shadow-glow-amber hover:from-primary-300 hover:to-primary-500 transition-all">
+            Start Family Club Pass →
+          </button>
+        </div>
+
+        <!-- Plan 3: VIP Chef's Table & Group Feast -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-slate-200/80 dark:border-white/10">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white">Group Feast & VIP Table</h3>
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-cyber-500/20 text-cyber-500 dark:text-cyber-400">
+                Groups & Hosts
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">
+              Designed for group gatherings, team lunches, and small-plate tasting enthusiasts.
+            </p>
+            <div class="flex items-baseline gap-1 mb-6">
+              <span class="font-mono font-extrabold text-4xl sm:text-5xl text-slate-900 dark:text-white">$<span class="price-value" data-monthly="129" data-yearly="103">129</span></span>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400">/ month <span class="billing-period-note">billed monthly</span></span>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-cyber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span><strong>$165 Monthly Credit</strong> for Group Dining or Catering</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-cyber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Monthly Chef's 6-Small-Plate Tasting Board for 4</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-cyber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Private Acoustic Group Table reservations (up to 12)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-cyber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Dedicated VIP Catering & Delivery Concierge</span>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" onclick="window.selectMembershipPlan('Group Feast & VIP Table')" class="w-full py-3.5 rounded-2xl font-heading font-bold text-sm border border-slate-300 dark:border-white/15 hover:border-cyber-400 text-slate-900 dark:text-white hover:bg-cyber-500 hover:text-slate-950 transition-all">
+            Choose Group VIP Pass
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 9: CUSTOMER TESTIMONIALS GRID
+       ========================================================================== -->
+  <section id="testimonials" class="py-20 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-up">
+        <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-widest bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+          VERIFIED GUEST EXPERIENCES
+        </span>
+        <h2 class="mt-4 font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
+          Loved by Solo Diners, Families & <span class="text-primary-500">Small-Plate Fans</span>
+        </h2>
+        <p class="mt-3 text-base text-slate-600 dark:text-slate-300">
+          Read why thousands of neighbors make Your Restaurant their daily ritual for breakfast, lunch, dinner, and online delivery.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-up">
+        
+        <!-- Review 1: Solo Diner -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-amber-400 text-sm">★★★★★</div>
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-cyber-500/15 text-cyber-500 dark:text-cyber-400 font-semibold">
+                Solo Diner • Quick Bite
+              </span>
+            </div>
+            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed">
+              "Finding a restaurant that is genuinely quiet and welcoming for solo dining is rare. I parked right outside for free, grabbed a peaceful corner booth, and had two incredible small plates and espresso in 25 minutes. Attentive, warm table service!"
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-white/10 flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=140&q=80" alt="Clara Vance" class="w-11 h-11 rounded-full object-cover" onerror="this.src='https://placehold.co/120x120/F59E0B/0F172A?text=CV'" />
+            <div>
+              <div class="font-heading font-bold text-sm text-slate-900 dark:text-white">Clara Vance</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Editorial Architect • Regular Lunch Guest</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2: Family with Children -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-amber-400 text-sm">★★★★★</div>
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-500/15 text-emerald-500 font-semibold">
+                Family with Kids
+              </span>
+            </div>
+            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed">
+              "With two young children, parking and noise levels usually make dining out stressful. Here, the free street parking right out front and the calm, casual booth seating made Sunday breakfast and Friday dinner a breeze. The kids loved sharing the small plates!"
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-white/10 flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=140&q=80" alt="Marcus & Elena Sterling" class="w-11 h-11 rounded-full object-cover" onerror="this.src='https://placehold.co/120x120/10B981/0F172A?text=MS'" />
+            <div>
+              <div class="font-heading font-bold text-sm text-slate-900 dark:text-white">Marcus & Elena Sterling</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Family of 4 • Family Club Members</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3: Group Dining & Small Plates -->
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-amber-400 text-sm">★★★★★</div>
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-primary-500/15 text-primary-500 font-semibold">
+                Group Dinner & Delivery
+              </span>
+            </div>
+            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed">
+              "Our group of six ordered eight different small plates so we could taste everything, and we could actually hear each other talk all evening! On busy weeknights, their online delivery arrives piping hot in 20 minutes."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-white/10 flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=140&q=80" alt="Devon Brooks" class="w-11 h-11 rounded-full object-cover" onerror="this.src='https://placehold.co/120x120/06B6D4/0F172A?text=DB'" />
+            <div>
+              <div class="font-heading font-bold text-sm text-slate-900 dark:text-white">Devon Brooks</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Product Director • Verified Diner</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 10: SMOOTH-EXPANDING FAQ ACCORDION
+       ========================================================================== -->
+  <section id="faq" class="py-20 relative z-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12 reveal-up">
+        <span class="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-widest bg-cyber-500/15 text-cyber-600 dark:text-cyber-400 border border-cyber-500/30">
+          FREQUENTLY ASKED QUESTIONS
+        </span>
+        <h2 class="mt-4 font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 dark:text-white">
+          Everything You Need to Know Before Dining or Ordering
+        </h2>
+      </div>
+
+      <div class="space-y-4 reveal-up" id="faq-accordion">
+        
+        <!-- FAQ 1 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+            <span>What are your hours for breakfast, lunch, dinner, and small plates?</span>
+            <span class="faq-icon w-8 h-8 rounded-xl bg-primary-500/15 text-primary-500 flex items-center justify-center shrink-0 transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200/50 dark:border-white/5 pt-4">
+            We are open daily from <strong>7:00 AM to 10:30 PM</strong>. Breakfast is served from 7:00 AM – 11:30 AM, Lunch from 11:30 AM – 4:00 PM, and Dinner from 4:00 PM – 10:30 PM. Our curated selection of quick bites and chef's small plates is available continuously from 11:00 AM until close for both dine-in table service and online delivery.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+            <span>How does the free street parking work when dining in?</span>
+            <span class="faq-icon w-8 h-8 rounded-xl bg-primary-500/15 text-primary-500 flex items-center justify-center shrink-0 transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200/50 dark:border-white/5 pt-4">
+            Guests enjoy complimentary, unmetered street parking directly along both sides of our block right outside the entrance. There are no parking meters or valet fees, making it effortless to stop in for a 15-minute quick bite or unload strollers for a relaxed family dinner.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+            <span>Is the restaurant atmosphere suitable for solo diners, large groups, and children?</span>
+            <span class="faq-icon w-8 h-8 rounded-xl bg-primary-500/15 text-primary-500 flex items-center justify-center shrink-0 transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200/50 dark:border-white/5 pt-4">
+            Yes! Our dining room is intentionally designed with a casual, quiet acoustic profile (~42 dB) divided into thoughtful seating zones: cozy solo dining nooks with power outlets, spacious family booths with high-chairs and kids' small plates, and conversational group tables for 4 to 12 guests.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+            <span>How do you keep online food delivery orders hot and crisp?</span>
+            <span class="faq-icon w-8 h-8 rounded-xl bg-primary-500/15 text-primary-500 flex items-center justify-center shrink-0 transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200/50 dark:border-white/5 pt-4">
+            Every online order is packed in vented, induction-heated thermal carriers that separate hot entrees and crispy small plates from chilled greens and sauces. You receive real-time GPS courier telemetry from our kitchen door to yours.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 11: HIGH-IMPACT ANIMATED CTA BANNER + MULTI-COLUMN FOOTER
+       ========================================================================== -->
+  <section id="reserve-cta" class="py-16 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl p-8 sm:p-12 lg:p-14 bg-gradient-to-br from-slate-900 via-obsidian-900 to-slate-950 border border-primary-500/30 shadow-glow-amber relative overflow-hidden text-white reveal-up">
+        
+        <!-- Decorative Aurora Glows inside CTA -->
+        <div class="aurora-blob-amber w-96 h-96 rounded-full absolute -top-20 -right-20 pointer-events-none"></div>
+        <div class="aurora-blob-cyan w-96 h-96 rounded-full absolute -bottom-24 -left-20 pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+          
+          <!-- Left Copy -->
+          <div class="lg:col-span-7 space-y-5">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              ● TABLES & EXPRESS DELIVERY OPEN NOW
+            </span>
+            <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight">
+              Ready for a Quiet Meal, Quick Bite, or Hot Delivery?
+            </h2>
+            <p class="text-slate-300 text-base sm:text-lg max-w-xl">
+              Reserve your table with complimentary street parking right outside—whether you are dining solo, gathering with friends, or bringing the whole family.
+            </p>
+            <div class="flex flex-wrap gap-6 pt-2 text-xs font-mono text-slate-300">
+              <span class="flex items-center gap-2"><span class="text-primary-400">✓</span> Breakfast, Lunch & Dinner</span>
+              <span class="flex items-center gap-2"><span class="text-cyber-400">✓</span> 22+ Chef Small Plates</span>
+              <span class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Free Street Parking</span>
+            </div>
+          </div>
+
+          <!-- Right Interactive Table Reservation / Express Order Form -->
+          <div class="lg:col-span-5">
+            <form id="instant-booking-form" class="p-6 rounded-2xl bg-white/5 border border-white/15 backdrop-blur-xl space-y-4">
+              <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Instant Table & Order Concierge</h3>
+                <span class="text-xs font-mono text-emerald-400">Instant Confirm</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[11px] font-mono uppercase text-slate-300 mb-1">Experience</label>
+                  <select id="booking-type" class="w-full px-3 py-2.5 rounded-xl bg-slate-900/90 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-primary-400">
+                    <option value="Quiet Dine-In Table">Dine-In Table Service</option>
+                    <option value="Quick Bite & Small Plates">Quick Bite / Small Plates</option>
+                    <option value="Curbside Pickup (Free Parking)">Curbside Pickup</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[11px] font-mono uppercase text-slate-300 mb-1">Party Size & Vibe</label>
+                  <select id="booking-party" class="w-full px-3 py-2.5 rounded-xl bg-slate-900/90 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-primary-400">
+                    <option value="Solo Diner (Quiet Nook)">1 Guest (Solo Quiet Nook)</option>
+                    <option value="2 Guests (Casual Table)" selected>2 Guests (Casual Table)</option>
+                    <option value="Family Booth (With Kids)">Family Booth (Kids Welcome)</option>
+                    <option value="Group Table (5–8 Guests)">Group Table (5–8 Guests)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[11px] font-mono uppercase text-slate-300 mb-1">Meal Time</label>
+                  <select id="booking-meal" class="w-full px-3 py-2.5 rounded-xl bg-slate-900/90 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-primary-400">
+                    <option value="Breakfast (8:30 AM)">Breakfast (8:30 AM)</option>
+                    <option value="Lunch / Quick Bite (12:30 PM)">Lunch / Quick Bite (12:30 PM)</option>
+                    <option value="Small Plates Hour (5:00 PM)">Small Plates Hour (5:00 PM)</option>
+                    <option value="Dinner Service (7:30 PM)" selected>Dinner Service (7:30 PM)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[11px] font-mono uppercase text-slate-300 mb-1">Your Name</label>
+                  <input type="text" id="booking-name" required placeholder="Alex Morgan" class="w-full px-3 py-2.5 rounded-xl bg-slate-900/90 border border-white/15 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary-400" />
+                </div>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 rounded-xl font-heading font-bold text-sm text-slate-950 bg-gradient-to-r from-primary-400 via-primary-500 to-amber-500 hover:from-primary-300 hover:to-primary-500 shadow-glow-amber transition-all">
+                Confirm Table & Reserve Free Parking Spot →
+              </button>
+
+              <p id="booking-feedback" class="hidden text-xs font-mono text-emerald-400 text-center pt-1"></p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-Column Footer -->
+  <footer class="pt-16 pb-12 border-t border-slate-200/80 dark:border-white/10 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-200/60 dark:border-white/10">
+        
+        <!-- Column 1: Brand & Amenities (Span 4) -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-slate-950 font-heading font-extrabold">
+              YR
+            </div>
+            <span class="font-heading font-extrabold text-xl text-slate-900 dark:text-white">
+              Your <span class="text-primary-500">Restaurant</span>
+            </span>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Serving handcrafted breakfast, lunch, dinner, and curated small plates in a casual, quiet setting designed for solo diners, groups, and families with children.
+          </p>
+          <div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+            <div>📍 742 Artisan Avenue • Free Street Parking Outside</div>
+            <div>🕒 Open Daily: 7:00 AM – 10:30 PM (Dine-In & Delivery)</div>
+          </div>
+        </div>
+
+        <!-- Column 2: Dining & Menus (Span 2) -->
+        <div class="lg:col-span-2 space-y-2.5 text-sm">
+          <h4 class="font-heading font-bold text-slate-900 dark:text-white mb-3">Menus</h4>
+          <a href="#menu-showcase" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Artisan Breakfast</a>
+          <a href="#menu-showcase" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">12-Min Quick Bites</a>
+          <a href="#menu-showcase" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Chef's Small Plates</a>
+          <a href="#menu-showcase" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Signature Dinner</a>
+          <a href="#menu-showcase" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Kids & Family Menu</a>
+        </div>
+
+        <!-- Column 3: Guest Experience (Span 2) -->
+        <div class="lg:col-span-2 space-y-2.5 text-sm">
+          <h4 class="font-heading font-bold text-slate-900 dark:text-white mb-3">Guest Perks</h4>
+          <a href="#features" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Quiet & Casual Vibe</a>
+          <a href="#features" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Free Street Parking</a>
+          <a href="#features" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Solo Dining Nooks</a>
+          <a href="#dining-club" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Dining Club Passes</a>
+          <a href="#faq" class="block text-slate-600 dark:text-slate-400 hover:text-primary-500">Parking & Hours FAQ</a>
+        </div>
+
+        <!-- Column 4: Working Newsletter & Complimentary Small Plate Offer (Span 4) -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="font-heading font-bold text-slate-900 dark:text-white">Get a Complimentary Small Plate</h4>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            Join our Chef's Table Note for seasonal breakfast & dinner releases and receive a voucher for a free small plate on your next dine-in or delivery order.
+          </p>
+          <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2 pt-1" novalidate>
+            <input type="email" id="newsletter-email" required placeholder="Enter your email address..." class="flex-1 px-4 py-3 rounded-xl glass-card text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-500" />
+            <button type="submit" class="px-5 py-3 rounded-xl font-heading font-bold text-sm text-slate-950 bg-gradient-to-r from-primary-400 to-primary-500 hover:from-primary-300 hover:to-primary-400 shrink-0 shadow-glow-amber transition-all">
+              Claim Voucher
+            </button>
+          </form>
+          <p id="newsletter-feedback" class="text-xs font-mono hidden"></p>
+        </div>
+
+      </div>
+
+      <!-- Bottom Copyright -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+        <div>© 2026 Your Restaurant. All rights reserved. Crafted for Global Marketplace Excellence.</div>
+        <div class="flex items-center gap-6">
+          <a href="#faq" class="hover:text-primary-500">Privacy Policy</a>
+          <a href="#faq" class="hover:text-primary-500">Terms of Service</a>
+          <a href="#faq" class="hover:text-primary-500">Allergen Guide</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       INTERACTIVE VIDEO LIGHTBOX MODAL
+       ========================================================================== -->
+  <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/85 backdrop-blur-xl">
+    <div class="glass-card rounded-3xl max-w-4xl w-full p-4 sm:p-6 border border-white/15 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-200/40 dark:border-white/10">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <h3 class="font-heading font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+            Your Restaurant — Culinary, Quiet Dining Room & Hot Delivery Tour
+          </h3>
+        </div>
+        <button type="button" id="close-video-modal-btn" class="p-2 rounded-xl bg-slate-200/70 dark:bg-white/10 text-slate-700 dark:text-white hover:bg-rose-500 hover:text-white transition-colors">
+          ✕
+        </button>
+      </div>
+
+      <div class="aspect-video rounded-2xl overflow-hidden bg-slate-950 relative">
+        <video id="modal-video-player" class="w-full h-full object-cover" controls playsinline poster="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-waiter-serving-food-to-a-couple-in-a-restaurant-41439-large.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-300">
+        <span>Featuring: All-day breakfast, lunch & dinner • Quiet booths for solo & families • Free street parking outside</span>
+        <a href="#reserve-cta" onclick="window.closeVideoModal()" class="px-4 py-2 rounded-xl bg-primary-500 text-slate-950 font-heading font-bold">
+          Book a Table Now →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       INTERACTIVE SLIDE-OVER LIVE ORDER BAG & TABLE DRAWER
+       ========================================================================== -->
+  <div id="cart-drawer-backdrop" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm">
+    <div class="fixed inset-y-0 right-0 max-w-md w-full glass-card bg-white dark:bg-slate-950 p-6 flex flex-col justify-between shadow-2xl border-l border-slate-200 dark:border-white/10">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10">
+          <div>
+            <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white">Your Live Order Bag</h3>
+            <p class="text-xs font-mono text-emerald-500">Hot Delivery or Dine-In Table Pre-Order</p>
+          </div>
+          <button type="button" id="close-cart-btn" class="p-2 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-200 hover:bg-rose-500 hover:text-white">
+            ✕
+          </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-items-list" class="my-5 space-y-3 max-h-[52vh] overflow-y-auto pr-1">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- Cart Footer & Instant Checkout -->
+      <div class="pt-4 border-t border-slate-200 dark:border-white/10 space-y-4">
+        <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+          <span>Street Parking / Curbside Fee</span>
+          <span class="text-emerald-500 font-bold">FREE ($0.00)</span>
+        </div>
+        <div class="flex items-center justify-between text-base font-heading font-extrabold text-slate-900 dark:text-white">
+          <span>Estimated Total</span>
+          <span id="cart-total-price" class="font-mono text-primary-500">$27.50</span>
+        </div>
+        <button type="button" id="checkout-btn" class="w-full py-4 rounded-2xl font-heading font-bold text-sm text-slate-950 bg-gradient-to-r from-primary-400 via-primary-500 to-amber-500 shadow-glow-amber hover:from-primary-300 hover:to-primary-500 transition-all">
+          Place Express Order (Dine-In or Delivery) →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Toast Notification Container -->
+  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 px-4 py-3 rounded-2xl glass-card bg-slate-900/95 text-white border border-emerald-500/40 shadow-glow-emerald text-xs sm:text-sm font-medium">
+    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+    <span id="toast-message">Added to your order!</span>
+  </div>
+
+  <!-- ==========================================================================
+       COMPLETE VANILLA JAVASCRIPT ENGINE
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------------------------------------
+         1. TOAST NOTIFICATION HELPER (NO ALERT/CONFIRM)
+      ------------------------------------------------------------------------ */
+      const toastEl = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-message');
+      let toastTimeout = null;
+
+      window.showToast = function (message) {
+        if (!toastEl || !toastMsg) return;
+        toastMsg.textContent = message;
+        toastEl.classList.remove('hidden');
+        toastEl.classList.add('flex');
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toastEl.classList.add('hidden');
+          toastEl.classList.remove('flex');
+        }, 3600);
+      };
+
+      /* ------------------------------------------------------------------------
+         2. DARK / LIGHT MODE THEME SWITCHER
+      ------------------------------------------------------------------------ */
+      const htmlRoot = document.documentElement;
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const savedTheme = localStorage.getItem('yr_theme');
+      if (savedTheme === 'light') {
+        htmlRoot.classList.remove('dark');
+      }
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          const isDark = htmlRoot.classList.toggle('dark');
+          localStorage.setItem('yr_theme', isDark ? 'dark' : 'light');
+          window.showToast(isDark ? 'Switched to Obsidian Dark Mode' : 'Switched to Warm Alabaster Light Mode');
+        });
+      }
+
+      /* ------------------------------------------------------------------------
+         3. MOBILE NAVIGATION DRAWER
+      ------------------------------------------------------------------------ */
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      if (mobileMenuBtn && mobileDrawer) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileDrawer.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => mobileDrawer.classList.add('hidden'));
+        });
+      }
+
+      /* ------------------------------------------------------------------------
+         4. HERO INTERACTIVE DASHBOARD TABS & SEATING SELECTOR
+      ------------------------------------------------------------------------ */
+      const heroTabBtns = document.querySelectorAll('.hero-tab-btn');
+      const heroPanels = {
+        delivery: document.getElementById('hero-panel-delivery'),
+        table: document.getElementById('hero-panel-table'),
+        plates: document.getElementById('hero-panel-plates')
+      };
+
+      heroTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-hero-tab');
+          heroTabBtns.forEach(b => {
+            b.className = 'hero-tab-btn py-2.5 px-3 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all';
+          });
+          btn.className = 'hero-tab-btn py-2.5 px-3 rounded-xl bg-gradient-to-r from-primary-500 to-amber-500 text-slate-950 shadow-sm transition-all';
+
+          Object.keys(heroPanels).forEach(key => {
+            if (heroPanels[key]) {
+              heroPanels[key].classList.toggle('hidden', key !== target);
+            }
+          });
+        });
+      });
+
+      window.selectHeroSeating = function (btnEl, label) {
+        document.querySelectorAll('.hero-seat-btn').forEach(b => {
+          b.className = 'hero-seat-btn p-2.5 rounded-xl border border-white/10 bg-white/5 text-xs font-heading font-bold text-slate-200 hover:border-primary-400';
+        });
+        btnEl.className = 'hero-seat-btn p-2.5 rounded-xl border border-primary-500 bg-primary-500/20 text-xs font-heading font-bold text-white';
+        const labelEl = document.getElementById('hero-selected-seat-label');
+        if (labelEl) labelEl.textContent = 'Selected: ' + label;
+        window.showToast('Selected ' + label + ' (Quiet Zone + Free Street Parking)');
+      };
+
+      /* ------------------------------------------------------------------------
+         5. INTERACTIVE MENU DATA & CATEGORY TABS (SMALL PLATES, BREAKFAST, LUNCH, DINNER)
+      ------------------------------------------------------------------------ */
+      const menuCatalog = {
+        'small-plates': {
+          chapterBadge: 'CHAPTER 01 • SMALL PLATES & QUICK BITES',
+          chapterTitle: 'Shareable Chef Small Plates & 10-Min Quick Bites',
+          chapterDesc: 'Order a single plate for a quick solo bite or share a table full of tapas with friends and family.',
+          items: [
+            {
+              name: 'Crispy Halloumi & Warm Honey Fig',
+              price: 11.50,
+              tag: '8-Min Quick Bite',
+              desc: 'Seared Cypriot halloumi, black mission figs, toasted pistachio & thyme honey.',
+              img: 'https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Charred Garlic Prawn Crostini',
+              price: 15.00,
+              tag: 'Chef Small Plate',
+              desc: 'Wild prawns in saffron garlic butter over grilled artisan sourdough.',
+              img: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Truffle Arancini & Roasted Garlic Aioli',
+              price: 12.00,
+              tag: 'Kid & Group Favorite',
+              desc: 'Crisp risotto spheres stuffed with aged parmesan and black summer truffle.',
+              img: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Herb-Crusted Lamb Lollipops (3 pc)',
+              price: 16.50,
+              tag: 'Signature Tapas',
+              desc: 'Pomegranate molasses glaze, mint labneh, and charred lemon.',
+              img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80'
+            }
+          ]
+        },
+        'breakfast': {
+          chapterBadge: 'CHAPTER 02 • ARTISAN BREAKFAST (7 AM – 11:30 AM)',
+          chapterTitle: 'Quiet Morning Breakfast & Single-Origin Coffee',
+          chapterDesc: 'Start your morning in a peaceful booth with free street parking right outside.',
+          items: [
+            {
+              name: 'Truffle Brioche Soft-Scrambled Eggs',
+              price: 13.50,
+              tag: 'Morning Favorite',
+              desc: 'Pasture-raised eggs, whipped herb ricotta, chives, and warm toasted brioche.',
+              img: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Avocado & Poached Egg Sourdough Tartine',
+              price: 14.00,
+              tag: 'Quick Breakfast',
+              desc: 'Heirloom cherry tomatoes, micro-basil, dukkah spice, and lemon olive oil.',
+              img: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Buttermilk Ricotta Berry Pancakes',
+              price: 14.50,
+              tag: 'Family & Kids Hit',
+              desc: 'Fluffy lemon-ricotta stack with warm Vermont maple and macerated berries.',
+              img: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Baked Mediterranean Shakshuka Skillet',
+              price: 15.50,
+              tag: 'Table Service Classic',
+              desc: 'Spiced plum tomato ragu, two poached eggs, feta crumble, and warm pita.',
+              img: 'https://images.unsplash.com/photo-1590412200988-a436970781fa?auto=format&fit=crop&w=500&q=80'
+            }
+          ]
+        },
+        'lunch': {
+          chapterBadge: 'CHAPTER 03 • ARTISAN LUNCH & EXPRESS BITES',
+          chapterTitle: 'Midday Bowls, Sandwiches & Solo Dining Comfort',
+          chapterDesc: 'Paced for working lunches, solo recharge breaks, or relaxed midday catch-ups.',
+          items: [
+            {
+              name: 'Harissa Honey Salmon Harvest Bowl',
+              price: 18.50,
+              tag: '12-Min Express',
+              desc: 'Crispy-skin salmon, ancient grains, roasted sweet potato, and tahini drizzle.',
+              img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Wagyu Brisket & Caramelized Onion Panini',
+              price: 17.00,
+              tag: 'Chef Specialty',
+              desc: 'Aged gruyère, rosemary au jus dip, and crisp house sea-salt fries.',
+              img: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Burrata & Heirloom Peach Garden Plate',
+              price: 15.50,
+              tag: 'Light & Fresh',
+              desc: 'Creamy Pugliese burrata, prosciutto di Parma, arugula, and aged balsamic.',
+              img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Artisan Roasted Chicken Club',
+              price: 16.00,
+              tag: 'Popular Delivery',
+              desc: 'Herb-roasted breast, smoked bacon, avocado, and sun-dried tomato aioli.',
+              img: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=500&q=80'
+            }
+          ]
+        },
+        'dinner': {
+          chapterBadge: 'CHAPTER 04 • SIGNATURE DINNER & FAMILY TABLE',
+          chapterTitle: 'Unhurried Evening Table Service & Full Courses',
+          chapterDesc: 'Gather with family, children, or friends in our quiet evening dining room.',
+          items: [
+            {
+              name: 'Pan-Seared Sea Bass & Saffron Risotto',
+              price: 26.00,
+              tag: 'Signature Entree',
+              desc: 'Wild Chilean sea bass, Meyer lemon gremolata, and charred asparagus.',
+              img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: '12-Hour Braised Short Rib Pappardelle',
+              price: 24.50,
+              tag: 'House Favorite',
+              desc: 'Hand-cut ribbon pasta, Barolo wine reduction, and pecorino romano.',
+              img: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Herb-Butter Prime Flat Iron Steak Frites',
+              price: 28.00,
+              tag: 'Dine-In & Delivery',
+              desc: '8oz prime cut, black garlic maître d’hôtel butter, and truffle parmesan fries.',
+              img: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+              name: 'Family Shareable Wood-Fired Mezze Feast',
+              price: 42.00,
+              tag: 'Feeds 3–4 Guests',
+              desc: 'Platter of grilled skewers, 4 small plates, warm flatbreads, and dips.',
+              img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=80'
+            }
+          ]
+        }
+      };
+
+      const menuGridEl = document.getElementById('menu-items-grid');
+      const menuTabBtns = document.querySelectorAll('.menu-tab-btn');
+
+      function renderMenuCategory(catKey) {
+        const data = menuCatalog[catKey];
+        if (!data || !menuGridEl) return;
+
+        // Update Video Showcase Chapter Info
+        const badgeEl = document.getElementById('video-chapter-badge');
+        const titleEl = document.getElementById('video-chapter-title');
+        const descEl = document.getElementById('video-chapter-desc');
+        if (badgeEl) badgeEl.textContent = data.chapterBadge;
+        if (titleEl) titleEl.textContent = data.chapterTitle;
+        if (descEl) descEl.textContent = data.chapterDesc;
+
+        menuGridEl.innerHTML = data.items.map(item => `
+          <div class="glass-card rounded-2xl p-4 flex flex-col justify-between gap-3 group hover:border-primary-500/50 transition-all">
+            <div class="flex items-start gap-3.5">
+              <img src="${item.img}" alt="${item.name}" class="w-20 h-20 rounded-xl object-cover shrink-0 group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/160x160/F59E0B/0F172A?text=Dish'" />
+              <div class="min-w-0 flex-1">
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-primary-500/15 text-primary-600 dark:text-primary-400 mb-1">
+                  ${item.tag}
+                </span>
+                <h4 class="font-heading font-bold text-sm sm:text-base text-slate-900 dark:text-white leading-snug">
+                  ${item.name}
+                </h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                  ${item.desc}
+                </p>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+              <span class="font-mono font-bold text-sm text-slate-900 dark:text-white">$${item.price.toFixed(2)}</span>
+              <button type="button" onclick="window.addDishToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})" class="px-3 py-1.5 rounded-xl bg-primary-500/15 hover:bg-primary-500 text-primary-600 dark:text-primary-400 hover:text-slate-950 font-mono font-bold text-xs transition-all">
+                + Add to Order
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      menuTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-menu-cat');
+          menuTabBtns.forEach(b => {
+            b.className = 'menu-tab-btn flex-1 min-w-[110px] py-2.5 px-4 rounded-xl font-heading font-bold text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all';
+          });
+          btn.className = 'menu-tab-btn flex-1 min-w-[130px] py-2.5 px-4 rounded-xl font-heading font-bold text-xs sm:text-sm bg-gradient-to-r from-primary-500 to-amber-500 text-slate-950 shadow-sm transition-all';
+          renderMenuCategory(cat);
+        });
+      });
+
+      // Initial render
+      renderMenuCategory('small-plates');
+
+      /* ------------------------------------------------------------------------
+         6. LIVE ORDER BAG / CART DRAWER ENGINE
+      ------------------------------------------------------------------------ */
+      let cartItems = [
+        { name: 'Herb Crusted Lamb Small Plate', price: 14.50, qty: 1 },
+        { name: 'Truffle Brioche Breakfast Plate', price: 13.00, qty: 1 }
+      ];
+
+      const cartBadge = document.getElementById('cart-count-badge');
+      const cartListEl = document.getElementById('cart-items-list');
+      const cartTotalEl = document.getElementById('cart-total-price');
+      const cartBackdrop = document.getElementById('cart-drawer-backdrop');
+
+      function updateCartUI() {
+        const totalCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
+        const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+        if (cartBadge) cartBadge.textContent = totalCount;
+        if (cartTotalEl) cartTotalEl.textContent = '$' + totalPrice.toFixed(2);
+
+        if (cartListEl) {
+          if (cartItems.length === 0) {
+            cartListEl.innerHTML = `<p class="text-sm text-slate-500 py-8 text-center">Your bag is empty. Add a small plate or entree!</p>`;
+          } else {
+            cartListEl.innerHTML = cartItems.map((item, idx) => `
+              <div class="p-3.5 rounded-2xl glass-card flex items-center justify-between gap-3">
+                <div>
+                  <div class="font-heading font-bold text-sm text-slate-900 dark:text-white">${item.name}</div>
+                  <div class="text-xs font-mono text-primary-500">$${item.price.toFixed(2)} each</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="window.changeCartQty(${idx}, -1)" class="w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/10 font-mono font-bold text-xs">-</button>
+                  <span class="font-mono text-xs font-bold w-5 text-center">${item.qty}</span>
+                  <button type="button" onclick="window.changeCartQty(${idx}, 1)" class="w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/10 font-mono font-bold text-xs">+</button>
+                </div>
+              </div>
+            `).join('');
+          }
+        }
+      }
+
+      window.addDishToCart = function (name, price) {
+        const existing = cartItems.find(i => i.name === name);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cartItems.push({ name, price, qty: 1 });
+        }
+        updateCartUI();
+        window.showToast(`Added "${name}" to your live order bag!`);
+      };
+
+      window.changeCartQty = function (index, delta) {
+        if (!cartItems[index]) return;
+        cartItems[index].qty += delta;
+        if (cartItems[index].qty <= 0) {
+          cartItems.splice(index, 1);
+        }
+        updateCartUI();
+      };
+
+      const openCartBtn = document.getElementById('open-cart-btn');
+      const closeCartBtn = document.getElementById('close-cart-btn');
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      if (openCartBtn && cartBackdrop) {
+        openCartBtn.addEventListener('click', () => cartBackdrop.classList.remove('hidden'));
+      }
+      if (closeCartBtn && cartBackdrop) {
+        closeCartBtn.addEventListener('click', () => cartBackdrop.classList.add('hidden'));
+      }
+      if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+          if (cartItems.length === 0) {
+            window.showToast('Please add at least one small plate or entree first!');
+            return;
+          }
+          cartBackdrop.classList.add('hidden');
+          window.showToast('Order transmitted to our kitchen! Estimated prep: 14 mins.');
+        });
+      }
+
+      updateCartUI();
+
+      /* ------------------------------------------------------------------------
+         7. INTERACTIVE 3-STEP "HOW IT WORKS" SWITCHER (DINE-IN VS DELIVERY)
+      ------------------------------------------------------------------------ */
+      window.switchJourney = function (mode) {
+        const btnDine = document.getElementById('journey-btn-dinein');
+        const btnDel = document.getElementById('journey-btn-delivery');
+
+        if (mode === 'dinein') {
+          btnDine.className = 'px-5 py-2.5 rounded-xl font-heading font-bold text-xs sm:text-sm bg-gradient-to-r from-primary-500 to-amber-500 text-slate-950 shadow-sm transition-all';
+          btnDel.className = 'px-5 py-2.5 rounded-xl font-heading font-bold text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all';
+
+          document.getElementById('step-1-badge').textContent = '$0 Curbside Spots';
+          document.getElementById('step-1-title').textContent = 'Pull Up to Free Street Parking';
+          document.getElementById('step-1-desc').textContent = 'Arrive stress-free with complimentary street parking right outside our entrance. Walk right in or hold your preferred quiet table online in 15 seconds.';
+
+          document.getElementById('step-2-badge').textContent = 'Solo, Groups & Kids';
+          document.getElementById('step-2-title').textContent = 'Settle Into Our Quiet Dining Room';
+          document.getElementById('step-2-desc').textContent = 'Choose a peaceful solo booth, a spacious group table, or a family-friendly corner. Our attentive servers bring warm hospitality without any noise or rush.';
+
+          document.getElementById('step-3-badge').textContent = 'Small Plates to Entrees';
+          document.getElementById('step-3-title').textContent = 'Savor Quick Bites or Full Courses';
+          document.getElementById('step-3-desc').textContent = 'Enjoy chef-curated small plates, energizing breakfast, lunch, or dinner. Pay effortlessly at your table whenever you are ready to head out.';
+        } else {
+          btnDel.className = 'px-5 py-2.5 rounded-xl font-heading font-bold text-xs sm:text-sm bg-gradient-to-r from-primary-500 to-amber-500 text-slate-950 shadow-sm transition-all';
+          btnDine.className = 'px-5 py-2.5 rounded-xl font-heading font-bold text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all';
+
+          document.getElementById('step-1-badge').textContent = 'All-Day Online Menu';
+          document.getElementById('step-1-title').textContent = 'Select Breakfast, Lunch, Dinner or Tapas';
+          document.getElementById('step-1-desc').textContent = 'Customize your small plates, quick bites, or family feast online in seconds with dietary notes for kids or solo cravings.';
+
+          document.getElementById('step-2-badge').textContent = '156°F Thermal Seal';
+          document.getElementById('step-2-title').textContent = 'Fired to Order & Thermal-Packed';
+          document.getElementById('step-2-desc').textContent = 'Our chefs plate your order into vented thermal-control boxes that keep crispy items crisp and entrees piping hot.';
+
+          document.getElementById('step-3-badge').textContent = 'Avg. 24-Min Arrival';
+          document.getElementById('step-3-title').textContent = 'Live GPS Tracking to Your Door';
+          document.getElementById('step-3-desc').textContent = 'Watch your courier in real time on our live telemetry map—or pull into our free street parking for 30-second curbside handoff.';
+        }
+      };
+
+      /* ------------------------------------------------------------------------
+         8. PRICING TABLE MONTHLY / YEARLY TOGGLE (20% DISCOUNT CALCULATION)
+      ------------------------------------------------------------------------ */
+      let isYearlyPricing = false;
+      const pricingToggleBtn = document.getElementById('pricing-toggle-btn');
+      const pricingKnob = document.getElementById('pricing-toggle-knob');
+      const priceValues = document.querySelectorAll('.price-value');
+      const periodNotes = document.querySelectorAll('.billing-period-note');
+
+      if (pricingToggleBtn) {
+        pricingToggleBtn.addEventListener('click', () => {
+          isYearlyPricing = !isYearlyPricing;
+          pricingToggleBtn.setAttribute('aria-checked', String(isYearlyPricing));
+          if (pricingKnob) {
+            pricingKnob.style.transform = isYearlyPricing ? 'translateX(24px)' : 'translateX(0px)';
+          }
+          priceValues.forEach(el => {
+            const monthly = el.getAttribute('data-monthly');
+            const yearly = el.getAttribute('data-yearly');
+            el.textContent = isYearlyPricing ? yearly : monthly;
+          });
+          periodNotes.forEach(note => {
+            note.textContent = isYearlyPricing ? 'billed annually (20% off)' : 'billed monthly';
+          });
+          window.showToast(isYearlyPricing ? 'Applied 20% Annual Dining Pass Discount!' : 'Switched to Monthly Dining Pass billing');
+        });
+      }
+
+      window.selectMembershipPlan = function (planName) {
+        window.showToast(`Selected "${planName}" (${isYearlyPricing ? 'Annual 20% Off' : 'Monthly'}). Complete below!`);
+        const reserveSection = document.getElementById('reserve-cta');
+        if (reserveSection) reserveSection.scrollIntoView({ behavior: 'smooth' });
+      };
+
+      /* ------------------------------------------------------------------------
+         9. VIDEO LIGHTBOX MODAL CONTROLS
+      ------------------------------------------------------------------------ */
+      const videoModal = document.getElementById('video-modal');
+      const openVideoBtn = document.getElementById('open-video-modal-btn');
+      const closeVideoBtn = document.getElementById('close-video-modal-btn');
+      const modalVideoPlayer = document.getElementById('modal-video-player');
+
+      window.openVideoModal = function () {
+        if (!videoModal) return;
+        videoModal.classList.remove('hidden');
+        videoModal.classList.add('flex');
+        if (modalVideoPlayer) modalVideoPlayer.play().catch(() => {});
+      };
+
+      window.closeVideoModal = function () {
+        if (!videoModal) return;
+        videoModal.classList.add('hidden');
+        videoModal.classList.remove('flex');
+        if (modalVideoPlayer) modalVideoPlayer.pause();
+      };
+
+      if (openVideoBtn) openVideoBtn.addEventListener('click', window.openVideoModal);
+      if (closeVideoBtn) closeVideoBtn.addEventListener('click', window.closeVideoModal);
+      if (videoModal) {
+        videoModal.addEventListener('click', (e) => {
+          if (e.target === videoModal) window.closeVideoModal();
+        });
+      }
+
+      /* ------------------------------------------------------------------------
+         10. SMOOTH-EXPANDING FAQ ACCORDION
+      ------------------------------------------------------------------------ */
+      document.querySelectorAll('.faq-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const content = trigger.nextElementSibling;
+          const icon = trigger.querySelector('.faq-icon');
+          const isOpen = !content.classList.contains('hidden');
+
+          document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+          document.querySelectorAll('.faq-icon').forEach(i => {
+            i.textContent = '+';
+            i.style.transform = 'rotate(0deg)';
+          });
+
+          if (!isOpen) {
+            content.classList.remove('hidden');
+            if (icon) {
+              icon.textContent = '−';
+              icon.style.transform = 'rotate(180deg)';
+            }
+          }
+        });
+      });
+
+      /* ------------------------------------------------------------------------
+         11. WORKING TABLE BOOKING & NEWSLETTER FORMS VALIDATION
+      ------------------------------------------------------------------------ */
+      const bookingForm = document.getElementById('instant-booking-form');
+      const bookingFeedback = document.getElementById('booking-feedback');
+      if (bookingForm) {
+        bookingForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('booking-name').value.trim() || 'Guest';
+          const type = document.getElementById('booking-type').value;
+          const party = document.getElementById('booking-party').value;
+          const meal = document.getElementById('booking-meal').value;
+
+          if (bookingFeedback) {
+            bookingFeedback.textContent = `✓ Confirmed for ${name}: ${party} • ${meal} (${type}). Free street parking spot awaiting!`;
+            bookingFeedback.classList.remove('hidden');
+          }
+          window.showToast(`Table & Free Street Parking guide reserved for ${name}!`);
+          bookingForm.reset();
+        });
+      }
+
+      const newsletterForm = document.getElementById('newsletter-form');
+      const newsletterEmail = document.getElementById('newsletter-email');
+      const newsletterFeedback = document.getElementById('newsletter-feedback');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const emailVal = newsletterEmail.value.trim();
+          const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+
+          if (!validEmail) {
+            newsletterFeedback.textContent = '⚠ Please enter a valid email address to claim your small plate voucher.';
+            newsletterFeedback.className = 'text-xs font-mono text-rose-400 block';
+            return;
+          }
+          newsletterFeedback.textContent = '✓ Voucher code YR-SMALLPLATE sent to ' + emailVal + '!';
+          newsletterFeedback.className = 'text-xs font-mono text-emerald-400 block';
+          newsletterForm.reset();
+          window.showToast('Complimentary Small Plate Voucher sent to your inbox!');
+        });
+      }
+
+      /* ------------------------------------------------------------------------
+         12. SCROLL REVEAL, BENTO MOUSE GLOW & ANIMATED NUMBER COUNTERS
+      ------------------------------------------------------------------------ */
+      const revealEls = document.querySelectorAll('.reveal-up');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => revealObserver.observe(el));
+
+      // Animated Stat Counters
+      const statCounters = document.querySelectorAll('.stat-counter');
+      const counterObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute('data-target') || '0');
+          const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+          const duration = 1600;
+          const startTime = performance.now();
+
+          function tick(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = (target * eased).toFixed(decimals);
+            el.textContent = current;
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              el.textContent = target.toFixed(decimals);
+            }
+          }
+          requestAnimationFrame(tick);
+          obs.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      statCounters.forEach(c => counterObserver.observe(c));
+
+      // Bento Card Hover Spotlight Coordinates
+      document.querySelectorAll('.bento-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        });
+      });
+
+      /* ------------------------------------------------------------------------
+         13. HTML5 CANVAS AMBIENT CULINARY EMBER & AURORA PARTICLES
+      ------------------------------------------------------------------------ */
+      const canvas = document.getElementById('ambient-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+
+        window.addEventListener('resize', () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+
+        const colors = ['rgba(245, 158, 11, 0.35)', 'rgba(6, 182, 212, 0.3)', 'rgba(16, 185, 129, 0.3)'];
+        const particles = Array.from({ length: 36 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2.4 + 0.8,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: -Math.random() * 0.45 - 0.1,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        }));
+
+        function animateParticles() {
+          ctx.clearRect(0, 0, width, height);
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.y < -10) p.y = height + 10;
+            if (p.x < -10) p.x = width + 10;
+            if (p.x > width + 10) p.x = -10;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+          }
+          requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+      }
+    })();
+  </script>
+</body>
+</html>
